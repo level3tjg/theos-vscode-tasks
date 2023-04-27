@@ -1,0 +1,52 @@
+{
+  "version": "2.0.0",
+  "presentation": {
+    "showReuseMessage": false
+  },
+  "options": {
+    "env": {
+      "THEOS_DEVICE_IP": "localhost",
+      "THEOS_DEVICE_PORT": "2222",
+      "THEOS_PACKAGE_SCHEME": "",
+      "JAILBROKEN": "1",
+      "SIDELOADED": "0",
+      "IPA": ""
+    }
+  },
+  "tasks": [
+    {
+      "label": "build",
+      "detail": "Build package",
+      "type": "shell",
+      "command": "make package",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "install",
+      "detail": "Install package to device",
+      "dependsOn": ["build"],
+      "type": "shell",
+      "command": "make install"
+    },
+    {
+      "label": "clean",
+      "detail": "Clean build directories",
+      "type": "shell",
+      "command": "make clean"
+    },
+    {
+      "label": "release",
+      "detail": "Build package for release",
+      "dependsOrder": "sequence",
+      "dependsOn": ["clean", "build"],
+      "options": {
+        "env": {
+          "FOR_RELEASE": "1"
+        }
+      }
+    }
+  ]
+}
