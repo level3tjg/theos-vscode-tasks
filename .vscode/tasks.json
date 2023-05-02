@@ -40,8 +40,9 @@
     {
       "label": "release",
       "detail": "Build package for release",
-      "dependsOrder": "sequence",
-      "dependsOn": ["clean", "build"],
+      "dependsOn": ["clean"],
+      "type": "shell",
+      "command": "make package",
       "options": {
         "env": {
           "FOR_RELEASE": "1"
