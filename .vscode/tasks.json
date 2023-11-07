@@ -42,12 +42,7 @@
       "detail": "Build package for release",
       "dependsOn": ["clean"],
       "type": "shell",
-      "command": "make package",
-      "options": {
-        "env": {
-          "FOR_RELEASE": "1"
-        }
-      }
+      "command": "make package FINALPACKAGE=1"
     }
   ]
 }
