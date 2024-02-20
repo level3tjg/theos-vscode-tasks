@@ -7,10 +7,11 @@
     "env": {
       "THEOS_DEVICE_IP": "localhost",
       "THEOS_DEVICE_PORT": "2222",
-      "THEOS_PACKAGE_SCHEME": "",
-      "JAILBROKEN": "1",
-      "SIDELOADED": "0",
-      "IPA": ""
+      // For rootless
+      // "THEOS_PACKAGE_SCHEME": "rootless",
+      // For Dopamine
+      // "THEOS_DEVICE_USER": "mobile",
+      // "THEOS_SUDO_COMMAND": "echo alpine | sudo -S", // Replace "alpine" with your root password
     }
   },
   "tasks": [
@@ -29,7 +30,7 @@
       "detail": "Install package to device",
       "dependsOn": ["build"],
       "type": "shell",
-      "command": "make install"
+      "command": "iproxy $THEOS_DEVICE_PORT 22 >/dev/null 2>&1 & make install"
     },
     {
       "label": "clean",
